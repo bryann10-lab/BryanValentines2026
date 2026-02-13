@@ -1,0 +1,427 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Together — Valentine’s Day with Bryan</title>
+  <meta name="description" content="Together: Valentine's Day with Bryan — Los Angeles • Saturday 02/14/26" />
+
+  <style>
+    :root{
+      --bg:#070712;
+      --glass: rgba(255,255,255,.08);
+      --stroke: rgba(255,255,255,.14);
+      --text: rgba(255,255,255,.92);
+      --muted: rgba(255,255,255,.72);
+      --hot: #ff2d55;
+      --sun: #ff8a00;
+      --violet:#7b5cff;
+      --cyan:#4bdfff;
+      --ok:#7CFFB2;
+      --shadow: 0 18px 55px rgba(0,0,0,.55);
+      --shadow2: 0 10px 30px rgba(0,0,0,.45);
+      --radius: 18px;
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      color:var(--text);
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      background: radial-gradient(1200px 700px at 20% -10%, rgba(123,92,255,.22), transparent 60%),
+                  radial-gradient(900px 600px at 90% 10%, rgba(75,223,255,.16), transparent 60%),
+                  radial-gradient(900px 700px at 50% 110%, rgba(255,45,85,.18), transparent 60%),
+                  var(--bg);
+      overflow-x:hidden;
+    }
+
+    /* Poster background (subtle) */
+    .bg-poster{
+      position:fixed; inset:0;
+      background-image: url('poster.png');
+      background-size: cover;
+      background-position: center;
+      filter: blur(18px) saturate(1.2) contrast(1.05);
+      opacity:.18;
+      transform: scale(1.08);
+      z-index:-3;
+    }
+    .bg-vignette{
+      position:fixed; inset:0;
+      background: radial-gradient(800px 420px at 50% 10%, rgba(255,255,255,.08), transparent 55%),
+                  radial-gradient(900px 600px at 50% 120%, rgba(0,0,0,.75), rgba(0,0,0,.94));
+      z-index:-2;
+      pointer-events:none;
+    }
+    .stars{
+      position:fixed; inset:-200px;
+      background-image:
+        radial-gradient(2px 2px at 20% 30%, rgba(255,255,255,.6), transparent 60%),
+        radial-gradient(1px 1px at 70% 20%, rgba(255,255,255,.45), transparent 55%),
+        radial-gradient(1px 1px at 85% 55%, rgba(255,255,255,.35), transparent 55%),
+        radial-gradient(2px 2px at 35% 70%, rgba(255,255,255,.35), transparent 60%),
+        radial-gradient(1px 1px at 10% 80%, rgba(255,255,255,.30), transparent 55%);
+      opacity:.55;
+      z-index:-1;
+      pointer-events:none;
+      animation: drift 18s linear infinite;
+    }
+    @keyframes drift{
+      0%{transform: translateY(0px)}
+      100%{transform: translateY(80px)}
+    }
+
+    .wrap{max-width: 980px; margin:0 auto; padding: 22px 18px 60px}
+    header{
+      display:flex; gap:16px; align-items:center; justify-content:space-between; flex-wrap:wrap;
+      padding: 10px 6px 18px;
+    }
+    .brand{
+      display:flex; flex-direction:column; gap:4px;
+    }
+    .pill{
+      display:inline-flex; gap:10px; align-items:center;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.14);
+      backdrop-filter: blur(10px);
+      box-shadow: var(--shadow2);
+      font-size: 12px;
+      letter-spacing:.35px;
+      color: rgba(255,255,255,.85);
+    }
+    .dot{width:7px;height:7px;border-radius:99px;background:linear-gradient(90deg,var(--hot),var(--sun))}
+
+    h1{
+      margin: 6px 0 0;
+      font-size: clamp(30px, 4vw, 46px);
+      line-height:1.02;
+      letter-spacing:-.02em;
+      text-shadow: 0 0 18px rgba(255,45,85,.22);
+    }
+    .sub{
+      color:var(--muted);
+      font-size: 14px;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 18px;
+      align-items:start;
+    }
+    @media (max-width: 920px){
+      .grid{grid-template-columns: 1fr}
+    }
+
+    .card{
+      background: var(--glass);
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius);
+      backdrop-filter: blur(14px);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+    .card .inner{padding: 16px}
+    .hero{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      align-items:stretch;
+    }
+    @media (max-width: 920px){
+      .hero{grid-template-columns: 1fr}
+    }
+    .poster{
+      background: rgba(0,0,0,.25);
+      border-right:1px solid rgba(255,255,255,.12);
+    }
+    .poster img{
+      width:100%; height:100%;
+      display:block;
+      object-fit: cover;
+      aspect-ratio: 3/4;
+      filter: saturate(1.08) contrast(1.05);
+    }
+
+    .info{
+      padding: 16px;
+      display:flex;
+      flex-direction:column;
+      gap: 12px;
+    }
+    .neonTitle{
+      font-size: 20px;
+      font-weight: 900;
+      letter-spacing:.3px;
+      margin:0;
+      background: linear-gradient(90deg, rgba(123,92,255,.95), rgba(75,223,255,.95), rgba(255,45,85,.95), rgba(255,138,0,.95));
+      -webkit-background-clip:text;
+      background-clip:text;
+      color:transparent;
+      text-shadow: 0 0 26px rgba(75,223,255,.16);
+    }
+    .facts{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    @media (max-width: 520px){
+      .facts{grid-template-columns:1fr}
+    }
+    .fact{
+      border:1px solid rgba(255,255,255,.12);
+      border-radius: 14px;
+      padding: 10px 12px;
+      background: rgba(0,0,0,.18);
+    }
+    .k{font-size:12px;color:rgba(255,255,255,.72)}
+    .v{font-size:14px;font-weight:800;margin-top:4px}
+
+    .divider{height:1px;background:rgba(255,255,255,.12);margin: 14px 0}
+
+    form{display:flex; flex-direction:column; gap:10px}
+    label{font-size:12px;color:rgba(255,255,255,.78); margin-top:4px}
+    input, select{
+      width:100%;
+      padding: 12px 12px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,.18);
+      background: rgba(0,0,0,.22);
+      color: var(--text);
+      outline:none;
+    }
+    input:focus, select:focus{
+      border-color: rgba(75,223,255,.55);
+      box-shadow: 0 0 0 4px rgba(75,223,255,.12);
+    }
+    .row{display:grid; grid-template-columns: 1fr 1fr; gap: 10px}
+    @media (max-width: 520px){ .row{grid-template-columns:1fr} }
+
+    .cta{
+      margin-top: 8px;
+      padding: 14px 14px;
+      border-radius: 16px;
+      border:0;
+      cursor:pointer;
+      font-weight: 900;
+      letter-spacing:.2px;
+      color:#111;
+      background: linear-gradient(90deg, var(--hot), var(--sun));
+      box-shadow: 0 10px 30px rgba(255,45,85,.20), 0 10px 26px rgba(255,138,0,.16);
+      transition: transform .08s ease, filter .08s ease;
+    }
+    .cta:hover{transform: translateY(-1px); filter: brightness(1.02)}
+    .cta:active{transform: translateY(0px); filter: brightness(.98)}
+
+    .fine{
+      margin-top: 8px;
+      font-size: 12px;
+      color: rgba(255,255,255,.65);
+      line-height:1.35;
+    }
+
+    .badge{
+      display:inline-flex; align-items:center; gap:10px;
+      padding: 10px 12px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(0,0,0,.20);
+    }
+    .heart{
+      width: 12px; height: 12px;
+      background: conic-gradient(from 180deg, var(--hot), var(--sun), var(--violet), var(--cyan), var(--hot));
+      border-radius: 4px;
+      transform: rotate(45deg);
+      box-shadow: 0 0 18px rgba(255,45,85,.22);
+    }
+
+    .hide{display:none}
+    .ok{color:var(--ok); font-weight:900}
+    .reveal{
+      padding: 16px;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,.16);
+      background: rgba(0,0,0,.22);
+      box-shadow: var(--shadow2);
+    }
+    .reveal h2{margin:0 0 6px; font-size: 20px}
+    .reveal p{margin:0; color: rgba(255,255,255,.78); line-height:1.45}
+
+    footer{
+      margin-top: 18px;
+      color: rgba(255,255,255,.55);
+      font-size: 12px;
+      text-align:center;
+    }
+
+    /* small TM-style disclaimer without impersonation */
+    .disclaimer{
+      font-size:12px; color: rgba(255,255,255,.62);
+      padding: 10px 12px;
+      border-radius: 14px;
+      border: 1px dashed rgba(255,255,255,.20);
+      background: rgba(0,0,0,.12);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="bg-poster"></div>
+  <div class="bg-vignette"></div>
+  <div class="stars"></div>
+
+  <div class="wrap">
+    <header>
+      <div class="brand">
+        <div class="pill"><span class="dot"></span> LIVE TOUR 2026 • Los Angeles</div>
+        <h1>Together: Valentine’s Day with Bryan</h1>
+        <div class="sub">A surprise “ticket checkout” page — made just for you 💘</div>
+      </div>
+      <div class="badge" title="No payment collected">
+        <span class="heart"></span>
+        <div style="display:flex;flex-direction:column;gap:2px;">
+          <div style="font-weight:900;">Secure Checkout</div>
+          <div style="font-size:12px;color:rgba(255,255,255,.66);">No payment info needed</div>
+        </div>
+      </div>
+    </header>
+
+    <div class="grid">
+      <section class="card">
+        <div class="hero">
+          <div class="poster">
+            <img src="poster.png" alt="Event poster" />
+          </div>
+          <div class="info">
+            <p class="neonTitle" style="margin-top:2px;">Event Info</p>
+
+            <div class="facts">
+              <div class="fact">
+                <div class="k">Date</div>
+                <div class="v">Saturday • 02/14/26</div>
+              </div>
+              <div class="fact">
+                <div class="k">City</div>
+                <div class="v">Los Angeles</div>
+              </div>
+              <div class="fact">
+                <div class="k">Doors</div>
+                <div class="v">6:00 PM</div>
+              </div>
+              <div class="fact">
+                <div class="k">Dress Code</div>
+                <div class="v">Cute as you want 😌</div>
+              </div>
+            </div>
+
+            <div class="divider"></div>
+
+            <div class="disclaimer">
+              This is a personal surprise page for Valentine’s Day. <b>No payments are collected</b> and this is not affiliated with any ticketing company.
+            </div>
+
+            <div style="margin-top:auto; opacity:.72; font-size:12px;">
+              Tip: Try the secret code <b>LOVE</b> 💌
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <aside class="card">
+        <div class="inner">
+          <p class="neonTitle">Checkout</p>
+          <div class="divider"></div>
+
+          <form id="checkout" autocomplete="on">
+            <div class="row">
+              <div>
+                <label for="type">Ticket type</label>
+                <select id="type">
+                  <option value="General Admission">General Admission</option>
+                  <option value="VIP Lovers Package">VIP Lovers Package</option>
+                  <option value="Backstage Hug Pass">Backstage Hug Pass</option>
+                </select>
+              </div>
+              <div>
+                <label for="qty">Quantity</label>
+                <select id="qty">
+                  <option value="1">1</option>
+                  <option value="2" selected>2</option>
+                  <option value="4">4</option>
+                </select>
+              </div>
+            </div>
+
+            <label for="name">Name on order</label>
+            <input id="name" required placeholder="Your name..." />
+
+            <label for="email">Email (for confirmation)</label>
+            <input id="email" type="email" required placeholder="you@example.com" />
+
+            <label for="code">Secret code</label>
+            <input id="code" placeholder="LOVE" />
+
+            <button class="cta" type="submit">Place Order</button>
+            <div class="fine">No credit card, no payment, no stress. Just vibes.</div>
+          </form>
+
+          <div id="success" class="hide">
+            <div class="ok">✅ Order Confirmed</div>
+            <div class="divider"></div>
+
+            <div class="reveal">
+              <h2>You're in, <span id="who">my love</span> 💖</h2>
+              <p id="details"></p>
+            </div>
+
+            <div class="divider"></div>
+
+            <div class="reveal">
+              <h2>🎁 Your surprise</h2>
+              <p>
+                This “ticket” is your all-access pass to a full Valentine’s night planned by Bryan.
+                Be ready at 6. Dress cute. Trust the process. 😏
+              </p>
+            </div>
+          </div>
+        </div>
+      </aside>
+    </div>
+
+    <footer>
+      Made with love. (And a little neon.) ✨
+    </footer>
+  </div>
+
+  <script>
+    const typeEl = document.getElementById('type');
+    const qtyEl = document.getElementById('qty');
+
+    document.getElementById('checkout').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const name  = (document.getElementById('name').value || '').trim() || 'my love';
+      const email = (document.getElementById('email').value || '').trim();
+      const type  = typeEl.value;
+      const qty   = qtyEl.value;
+      const code  = (document.getElementById('code').value || '').trim().toUpperCase();
+      const orderId = "VD-" + Math.random().toString(36).slice(2,8).toUpperCase();
+
+      const extra = (code === "LOVE") ? " 💘 (code accepted)" : "";
+
+      document.getElementById('who').textContent = name;
+      document.getElementById('details').innerHTML =
+        "<b>Order ID:</b> " + orderId + "<br>" +
+        "<b>Name:</b> " + name + "<br>" +
+        "<b>Email:</b> " + email + "<br>" +
+        "<b>Tickets:</b> " + qty + " × " + type + extra;
+
+      document.getElementById('checkout').classList.add('hide');
+      document.getElementById('success').classList.remove('hide');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  </script>
+</body>
+</html>
